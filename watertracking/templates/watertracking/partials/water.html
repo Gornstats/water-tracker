@@ -1,0 +1,28 @@
+{% if water.drunk == 0 %}
+    <div class="box">
+        <span class="four" 
+            hx-target="closest div"
+            hx-swap="outerHTML"
+            hx-put="/drunk/{{ water.id }}/4/"
+        ></span>
+        <span class="three" 
+            hx-target="closest div"
+            hx-swap="outerHTML"
+            hx-put="/drunk/{{ water.id }}/3/"
+        ></span>
+        <span class="two" 
+            hx-target="closest div"
+            hx-swap="outerHTML"
+            hx-put="/drunk/{{ water.id }}/2/"
+        ></span>
+        <span class="one" 
+            hx-target="closest div"
+            hx-swap="outerHTML"
+            hx-put="/drunk/{{ water.id }}/1/"
+        ></span>
+    </div>
+{% else %}
+    <div class="box">
+        <div class="fill{{ water.drunk }}"></div>
+    </div>
+{% endif %}

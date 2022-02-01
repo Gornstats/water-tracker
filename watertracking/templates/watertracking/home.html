@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Watertracking with HTMX and Django</title>
+
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background: grey;
+                position: relative;
+                float: left;
+                margin: 5px;
+              }
+              
+              .box > span, div {
+                position: absolute;
+                bottom: 0;
+                width: 100%; 
+              }
+              
+              .box > span:hover {
+                background: lightblue;
+                z-index: 5;
+              }
+              
+              .one {
+                height: 25px;
+              }
+              
+              .two {
+                height: 50px;
+              }
+              
+              .three {
+                height: 75px;
+              }
+              
+              .four {
+                height: 100px;
+              }
+              
+              .fill1 {
+                height: 25px;
+                background: blue;
+              }
+              .fill2 {
+                height: 50px;
+                background: blue;
+              }
+              .fill3 {
+                height: 75px;
+                background: blue;
+              }
+              .fill4 {
+                height: 100px;
+                background: blue;
+              }
+        </style>
+    </head>
+
+    <body>
+        <ul>
+        {% for water in waters %}
+            {% include 'watertracking/partials/water.html' %}
+        {% endfor %}
+        </ul>
+    </body>
+
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        });
+    </script>
+
+</html>
+
+        
